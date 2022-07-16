@@ -7,8 +7,18 @@
     tools:context=".ui.activity.MainActivity"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#cccccc"
+        app:title="Material Design"
+        app:titleTextColor="@android:color/white"
+        >
+    </androidx.appcompat.widget.Toolbar>
+
     <fragment
-        android:id="@+id/nav_host_fragment"
+        android:id="@+id/main_nav_host_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -21,7 +31,7 @@
         android:id="@+id/main_bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#cccccccc"
+        android:background="#cccccc"
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:itemTextColor="@drawable/bottom_navigation_selector"
         app:menu="@menu/navigation_menu"/>

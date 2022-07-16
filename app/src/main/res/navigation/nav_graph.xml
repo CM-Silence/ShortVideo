@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_mine" />
     <fragment
         android:id="@+id/publishFragment"
-        android:name="com.example.shortvideo.PublishFragment"
+        android:name="com.example.shortvideo.ui.fragment.PublishFragment"
         android:label="fragment_publish"
         tools:layout="@layout/fragment_publish" />
 </navigation>
