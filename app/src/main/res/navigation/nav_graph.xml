@@ -25,4 +25,9 @@
         android:name="com.example.shortvideo.ui.fragment.MineFragment"
         android:label="fragment_mine"
         tools:layout="@layout/fragment_mine" />
+    <fragment
+        android:id="@+id/publishFragment"
+        android:name="com.example.shortvideo.PublishFragment"
+        android:label="fragment_publish"
+        tools:layout="@layout/fragment_publish" />
 </navigation>
