@@ -7,16 +7,6 @@
     tools:context=".ui.activity.MainActivity"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#cccccc"
-        app:title="Material Design"
-        app:titleTextColor="@android:color/white"
-        >
-    </androidx.appcompat.widget.Toolbar>
-
     <fragment
         android:id="@+id/main_nav_host_fragment"
         android:layout_width="match_parent"

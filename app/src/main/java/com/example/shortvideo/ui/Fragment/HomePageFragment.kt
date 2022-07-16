@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableLayout
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.example.shortvideo.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +40,15 @@ class HomePageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_page, container, false)
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val mToolBar = view.findViewById<Toolbar>(R.id.homePage_toolbar)
+        val mTableLayout = view.findViewById<TableLayout>(R.id.homePage_tableLayout)
+
     }
 
     companion object {

@@ -3,6 +3,7 @@ package com.example.shortvideo.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -23,10 +24,17 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navigation = findViewById<BottomNavigationView>(R.id.main_bottomNavigationView)
-        val navController: NavController = Navigation.findNavController(this, R.id.main_nav_host_fragment)
-        NavigationUI.setupWithNavController(navigation, navController)
+        initComponent()
+    }
 
+    private fun initComponent(){
+        val bottomNavigation =
+            findViewById<BottomNavigationView>(R.id.main_bottomNavigationView)
+
+        val navController: NavController =
+            Navigation.findNavController(this, R.id.main_nav_host_fragment)
+
+        NavigationUI.setupWithNavController(bottomNavigation, navController)
     }
 
 

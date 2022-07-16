@@ -1,9 +1,15 @@
 package com.example.shortvideo.base
 
 import android.content.pm.ActivityInfo
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+
 
 /**
  * @ClassName BaseActivity
@@ -19,6 +25,7 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT //锁定竖屏
+        cancelStatusBar() //透明状态栏
         Log.d("BaseActivity","${javaClass.simpleName} onCreate") //打印当前活动的类名
         AppManager.addActivity(this)
     }
@@ -36,5 +43,19 @@ open class BaseActivity : AppCompatActivity() {
     //防止按回退键后直接退出程序
     override fun onBackPressed() {
         moveTaskToBack(true)
+    }
+
+    private fun cancelStatusBar() {
+        window.requestFeature(Window.FEATURE_NO_TITLE)
+        val window = window
+        window.clearFlags(
+            WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+        )
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = Color.TRANSPARENT
+        window.navigationBarColor = Color.TRANSPARENT
     }
 }
