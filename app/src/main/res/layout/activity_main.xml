@@ -7,15 +7,12 @@
     tools:context=".ui.activity.MainActivity"
     android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/main_nav_host_fragment"
+    <FrameLayout
+        android:id="@+id/main_framelayout_show"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost= "true"
-        app:navGraph="@navigation/nav_graph"
-        tools:ignore="FragmentTagUsage" />
+        android:layout_weight="10">
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottomNavigationView"

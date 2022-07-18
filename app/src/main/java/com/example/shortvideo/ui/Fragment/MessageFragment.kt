@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.shortvideo.R
+import com.example.shortvideo.base.BaseFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,7 +18,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [MessageFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MessageFragment : Fragment() {
+class MessageFragment : BaseFragment("消息") {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
