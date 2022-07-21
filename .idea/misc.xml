@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.1" />
+        <entry key="..\:/project/Android/ShortVideo/app/src/main/res/drawable/general_btn_background.xml" value="0.1" />
+        <entry key="..\:/project/Android/ShortVideo/app/src/main/res/drawable/orange_round.xml" value="0.1" />
+        <entry key="..\:/project/Android/ShortVideo/app/src/main/res/drawable/orange_round_border.xml" value="0.1" />
+        <entry key="..\:/project/Android/ShortVideo/app/src/main/res/drawable/orange_round_btn.xml" value="0.1" />
+        <entry key="..\:/project/Android/ShortVideo/app/src/main/res/drawable/transparent_round_btn.xml" value="0.1" />
+        <entry key="..\:/project/Android/ShortVideo/app/src/main/res/drawable/white_round.xml" value="0.1" />
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/layout/activity_main.xml" value="0.20471014492753623" />
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/layout/activity_start.xml" value="0.14666666666666667" />
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/layout/fragment_attention.xml" value="0.21666666666666667" />
@@ -18,6 +24,7 @@
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/layout/fragment_recommend.xml" value="0.21666666666666667" />
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/layout/fragment_short_video.xml" value="0.20471014492753623" />
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/layout/fragment_text.xml" value="0.21666666666666667" />
+        <entry key="..\:/project/Android/ShortVideo/app/src/main/res/layout/rv_recommend.xml" value="0.215625" />
         <entry key="..\:/project/Android/ShortVideo/app/src/main/res/menu/navigation_menu.xml" value="0.21666666666666667" />
       </map>
     </option>
