@@ -1,5 +1,7 @@
 package com.example.shortvideo.bean
 
+import com.example.shortvideo.R
+
 /**
  * @ClassName AttentionFrgRecommendBean
  * @author Silence~
@@ -21,6 +23,30 @@ data class AttentionFrgRecommendBean(
 
         fun getNum() : String {
             return "发表 $jokesNum   粉丝 $fansNum"
+        }
+
+        fun getAttentionBackground() : Int{
+            return if(isAttention){
+                R.drawable.transparent_round
+            } else{
+                R.drawable.transparent_round
+            }
+        }
+
+        fun getAttentionText() : String{
+            return if(isAttention){
+                "已关注"
+            } else{
+                "+关注"
+            }
+        }
+
+        fun getAttentionColor() : Int{
+            return if(isAttention){
+                R.color.black
+            } else{
+                R.color.white
+            }
         }
     }
 }

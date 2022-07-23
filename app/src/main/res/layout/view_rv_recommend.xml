@@ -53,10 +53,10 @@
             android:layout_width="150dp"
             android:layout_height="45dp"
             android:layout_marginTop="4dp"
-            android:background="@drawable/orange_round"
-            android:text="+关注"
+            android:background="@{data.getAttentionBackground()}"
+            android:text="@{data.getAttentionText()"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@{data.getAttentionColor()"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>
