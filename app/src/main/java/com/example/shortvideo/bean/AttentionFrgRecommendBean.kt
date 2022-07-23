@@ -18,5 +18,9 @@ data class AttentionFrgRecommendBean(
         var fansNum = "0" //粉丝数
         var jokesNum = "0" //发布的段子数
         var isAttention = false //你是否已经关注
+
+        fun getNum() : String {
+            return "发表 $jokesNum   粉丝 $fansNum"
+        }
     }
 }
