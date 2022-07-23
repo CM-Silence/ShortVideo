@@ -3,6 +3,8 @@ package com.example.shortvideo.base
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.shortvideo.model.MainViewModel
 
 /**
  * @ClassName BaseFragment
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment
  * @Description
  */
 open class BaseFragment(var title : String = "") : Fragment() {
+    protected val viewModel: MainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
