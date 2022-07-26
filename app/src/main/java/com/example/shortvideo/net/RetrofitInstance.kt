@@ -21,7 +21,7 @@ class RetrofitInstance private constructor() {
 
     companion object {
         private var retrofit: Retrofit? = null
-        const val BASE_URL = "http://tools.cretinzp.com/jokes"
+        const val BASE_URL = "http://tools.cretinzp.com/jokes/"
 
         val instance: RetrofitInstance by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
             RetrofitInstance()

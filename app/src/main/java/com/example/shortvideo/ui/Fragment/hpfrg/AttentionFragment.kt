@@ -5,8 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.shortvideo.R
 import com.example.shortvideo.base.BaseFragment
+import com.example.shortvideo.bean.AttentionFrgRecommendBean
+import com.example.shortvideo.databinding.ViewRvRecommendBinding
+import com.example.shortvideo.ui.adapter.AttentionFrgRvAdapter
+import com.example.shortvideo.ui.viewmodel.MainViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +30,9 @@ class AttentionFragment : BaseFragment("关注") {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var mRvRecommend : RecyclerView
+    private lateinit var mRvContent : RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,6 +48,34 @@ class AttentionFragment : BaseFragment("关注") {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_attention, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(view)
+        initRv()
+    }
+
+    private fun initView(view : View){
+        mRvRecommend = view.findViewById(R.id.attentionfrg_rv_recommend)
+        mRvContent = view.findViewById(R.id.attentionfrg_rv_content)
+    }
+
+    private fun initRv(){
+        val layoutManager = LinearLayoutManager(requireContext())
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        mRvRecommend.layoutManager = layoutManager
+        viewModel.getAttentionList(object : MainViewModel.OnResponseListener{
+            override fun onSuccess(dataList : List<AttentionFrgRecommendBean.Data>?) {
+                mRvRecommend.adapter = AttentionFrgRvAdapter(dataList!!,requireActivity())
+            }
+
+            override fun onDefeat() {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
 
     companion object {
         /**

@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LifecycleRegistry
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shortvideo.R
 import com.example.shortvideo.base.BaseFragment
-import com.example.shortvideo.model.MainViewModel
 import com.example.shortvideo.ui.adapter.HomePageFragmentVp2Adapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -32,7 +30,7 @@ class HomePageFragment : BaseFragment("首页") {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var viewModel : MainViewModel
+
 
     private lateinit var mToolBar : Toolbar
     private lateinit var mTabLayout : TabLayout
@@ -45,10 +43,6 @@ class HomePageFragment : BaseFragment("首页") {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     override fun onCreateView(
@@ -68,7 +62,7 @@ class HomePageFragment : BaseFragment("首页") {
     }
 
     private fun initData(){
-        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+
     }
 
     private fun initComponent(v : View){

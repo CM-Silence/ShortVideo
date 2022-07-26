@@ -1,9 +1,15 @@
-package com.example.shortvideo.model
+package com.example.shortvideo.ui.viewmodel
 
 import com.example.shortvideo.base.BaseFragment
 import com.example.shortvideo.base.BaseViewModel
+import com.example.shortvideo.bean.AttentionFrgRecommendBean
+import com.example.shortvideo.net.ApiService
+import com.example.shortvideo.net.RetrofitInstance
 import com.example.shortvideo.ui.fragment.*
 import com.example.shortvideo.ui.fragment.hpfrg.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * @ClassName HomePageViewModel
@@ -33,10 +39,33 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
+    fun getAttentionList(listener : OnResponseListener){
+        val service : ApiService = RetrofitInstance.instance.create(ApiService::class.java)
+        val response : Call<AttentionFrgRecommendBean?>? = service.getAttentionRecommend()
+        response?.enqueue(object : Callback<AttentionFrgRecommendBean?> {
+            override fun onResponse(
+                call: Call<AttentionFrgRecommendBean?>?,
+                response: Response<AttentionFrgRecommendBean?>?
+            ) {
+                listener.onSuccess(response?.body()?.data)
+            }
+
+            override fun onFailure(call: Call<AttentionFrgRecommendBean?>?, t: Throwable?) {
+                listener.onDefeat()
+            }
+
+        })
+    }
+
     override fun onCleared() {
         super.onCleared()
         mainFrgList.clear()
         hpFrgList.clear()
+    }
+
+    interface OnResponseListener{
+        fun onSuccess(dataList : List<AttentionFrgRecommendBean.Data>?)
+        fun onDefeat()
     }
 
 }

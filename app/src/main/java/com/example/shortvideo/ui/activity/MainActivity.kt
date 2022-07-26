@@ -5,12 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.shortvideo.R
 import com.example.shortvideo.base.BaseActivity
 import com.example.shortvideo.base.BaseFragment
-import com.example.shortvideo.model.MainViewModel
+import com.example.shortvideo.ui.viewmodel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

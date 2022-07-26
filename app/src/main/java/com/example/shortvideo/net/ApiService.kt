@@ -16,6 +16,6 @@ interface ApiService {
 
     //获取“关注”中的推荐列表数据
     @Headers("project_token: B06FEB2F5C194146AE4CC0D0E0743372")
-    @POST("/home/attention/recommend")
-    suspend fun getAttentionRecommend(): Call<AttentionFrgRecommendBean?>?
+    @POST("home/attention/recommend")
+    fun getAttentionRecommend(): Call<AttentionFrgRecommendBean?>?
 }

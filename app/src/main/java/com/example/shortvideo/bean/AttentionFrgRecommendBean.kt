@@ -1,6 +1,14 @@
 package com.example.shortvideo.bean
 
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.shortvideo.R
+import java.lang.Exception
+import javax.sql.DataSource
 
 /**
  * @ClassName AttentionFrgRecommendBean
@@ -9,7 +17,7 @@ import com.example.shortvideo.R
  * @Description 推荐用户
  */
 data class AttentionFrgRecommendBean(
-    var dataList : List<Data>, //被推荐的用户信息
+    var data : List<Data>, //被推荐的用户信息
     var msg : String,
     var code : Int
 ){
@@ -46,6 +54,18 @@ data class AttentionFrgRecommendBean(
                 R.color.black
             } else{
                 R.color.white
+            }
+        }
+
+        companion object {
+            @JvmStatic
+            @BindingAdapter("profileImage")
+            fun loadImage(image: ImageView, imgUrl: String) {
+                Glide.with(image.context)
+                    .load(imgUrl)
+                    .error(R.drawable.ic_launcher_background)
+                    .into(image)
+
             }
         }
     }
