@@ -1,6 +1,8 @@
 package com.example.shortvideo.bean
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
+import android.widget.Button
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -33,39 +35,31 @@ data class AttentionFrgRecommendBean(
             return "发表 $jokesNum   粉丝 $fansNum"
         }
 
-        fun getAttentionBackground() : Int{
-            return if(isAttention){
-                R.drawable.transparent_round
-            } else{
-                R.drawable.transparent_round
-            }
-        }
-
-        fun getAttentionText() : String{
-            return if(isAttention){
-                "已关注"
-            } else{
-                "+关注"
-            }
-        }
-
-        fun getAttentionColor() : Int{
-            return if(isAttention){
-                R.color.black
-            } else{
-                R.color.white
-            }
-        }
-
         companion object {
             @JvmStatic
             @BindingAdapter("profileImage")
             fun loadImage(image: ImageView, imgUrl: String) {
                 Glide.with(image.context)
                     .load(imgUrl)
-                    .error(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_foreground)
                     .into(image)
 
+            }
+
+            @SuppressLint("ResourceAsColor")
+            @JvmStatic
+            @BindingAdapter("buttonStyle")
+            fun loadButtonStyle(button: Button, isAttention : Boolean) {
+                if(isAttention){
+                    button.setBackgroundResource(R.drawable.transparent_round)
+                    button.text = "已关注"
+                    button.setTextColor(R.color.black)
+                }
+                else{
+                    button.setBackgroundResource(R.drawable.orange_round)
+                    button.text = "+关注"
+                    button.setTextColor(R.color.white)
+                }
             }
         }
     }

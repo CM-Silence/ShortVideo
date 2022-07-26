@@ -53,10 +53,8 @@
             android:layout_width="110dp"
             android:layout_height="40dp"
             android:layout_marginTop="4dp"
-            android:background="@{data.getAttentionBackground()}"
-            android:text="@{data.getAttentionText()"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textSize="14sp"
+            buttonStyle="@{data.isAttention}"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>
