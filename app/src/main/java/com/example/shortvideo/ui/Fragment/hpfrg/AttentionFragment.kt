@@ -1,19 +1,23 @@
 package com.example.shortvideo.ui.fragment.hpfrg
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.shortvideo.R
 import com.example.shortvideo.base.BaseFragment
 import com.example.shortvideo.bean.AttentionFrgRecommendBean
 import com.example.shortvideo.databinding.ViewRvRecommendBinding
 import com.example.shortvideo.ui.adapter.AttentionFrgRvAdapter
 import com.example.shortvideo.ui.viewmodel.MainViewModel
+import com.example.shortvideo.util.ToastUtil
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,8 +34,11 @@ class AttentionFragment : BaseFragment("关注") {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var mSwipeRefreshLayout : SwipeRefreshLayout
     private lateinit var mRvRecommend : RecyclerView
     private lateinit var mRvContent : RecyclerView
+
+    private lateinit var rvAdapter : AttentionFrgRvAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +58,40 @@ class AttentionFragment : BaseFragment("关注") {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(view)
+        initComponent(view)
+        initEvent()
         initRv()
     }
 
-    private fun initView(view : View){
+    private fun initComponent(view : View){
+        mSwipeRefreshLayout = view.findViewById(R.id.attentionfrg_swipeRefreshLayout)
         mRvRecommend = view.findViewById(R.id.attentionfrg_rv_recommend)
         mRvContent = view.findViewById(R.id.attentionfrg_rv_content)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun initEvent(){
+        mSwipeRefreshLayout.setOnRefreshListener {
+            mSwipeRefreshLayout.isRefreshing = true
+            viewModel.getAttentionList(object : MainViewModel.OnResponseListener{
+                override fun onSuccess() {
+                    ToastUtil.show("刷新成功!")
+                    mSwipeRefreshLayout.isRefreshing = false
+                }
+
+                override fun onDefeat() {
+                    ToastUtil.show("刷新失败！请检查您的网络！")
+                    mSwipeRefreshLayout.isRefreshing = false
+                }
+            })
+
+            val liveData = viewModel.dataList
+            liveData.observe(viewLifecycleOwner
+            ) {
+                rvAdapter.dataList = viewModel.dataList.value!!
+                rvAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
     private fun initRv(){
@@ -65,12 +99,14 @@ class AttentionFragment : BaseFragment("关注") {
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         mRvRecommend.layoutManager = layoutManager
         viewModel.getAttentionList(object : MainViewModel.OnResponseListener{
-            override fun onSuccess(dataList : List<AttentionFrgRecommendBean.Data>?) {
-                mRvRecommend.adapter = AttentionFrgRvAdapter(dataList!!,requireActivity())
+            override fun onSuccess() {
+                rvAdapter = AttentionFrgRvAdapter(viewModel.dataList.value!!)
+                mRvRecommend.adapter = rvAdapter
             }
 
             override fun onDefeat() {
-                TODO("Not yet implemented")
+                rvAdapter = AttentionFrgRvAdapter(viewModel.dataList.value!!)
+                ToastUtil.show("网络异常,加载失败！")
             }
 
         })

@@ -1,5 +1,7 @@
 package com.example.shortvideo.ui.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.shortvideo.base.BaseFragment
 import com.example.shortvideo.base.BaseViewModel
 import com.example.shortvideo.bean.AttentionFrgRecommendBean
@@ -20,6 +22,8 @@ import retrofit2.Response
 class MainViewModel : BaseViewModel() {
     val mainFrgList = ArrayList<BaseFragment>() //MainActivity中的fragment列表
     val hpFrgList = ArrayList<BaseFragment>() //HomePageFragment中Vp2中的fragment列表
+    private var _dataList = MutableLiveData<List<AttentionFrgRecommendBean.Data>?>()
+    var dataList : LiveData<List<AttentionFrgRecommendBean.Data>?>  = _dataList
 
     init{
         mainFrgList.apply {
@@ -47,10 +51,12 @@ class MainViewModel : BaseViewModel() {
                 call: Call<AttentionFrgRecommendBean?>?,
                 response: Response<AttentionFrgRecommendBean?>?
             ) {
-                listener.onSuccess(response?.body()?.data)
+                _dataList.value = response?.body()?.data
+                listener.onSuccess()
             }
 
             override fun onFailure(call: Call<AttentionFrgRecommendBean?>?, t: Throwable?) {
+                _dataList.value = ArrayList()
                 listener.onDefeat()
             }
 
@@ -64,7 +70,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     interface OnResponseListener{
-        fun onSuccess(dataList : List<AttentionFrgRecommendBean.Data>?)
+        fun onSuccess()
         fun onDefeat()
     }
 

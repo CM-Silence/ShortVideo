@@ -1,13 +1,9 @@
 package com.example.shortvideo.ui.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.adapters.AdapterViewBindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.shortvideo.R
 import com.example.shortvideo.bean.AttentionFrgRecommendBean
 import com.example.shortvideo.databinding.ViewRvRecommendBinding
@@ -18,9 +14,7 @@ import com.example.shortvideo.databinding.ViewRvRecommendBinding
  * @date 2022/7/23
  * @Description “关注”界面中的“推荐关注”列表适配器
  */
-class AttentionFrgRvAdapter(private val list : List<AttentionFrgRecommendBean.Data>,
-                            private val activity: Activity
-)
+class AttentionFrgRvAdapter(var dataList : List<AttentionFrgRecommendBean.Data>)
     : RecyclerView.Adapter<AttentionFrgRvAdapter.InnerRvHolder>() {
 
     inner class InnerRvHolder(binding: ViewRvRecommendBinding) : RecyclerView.ViewHolder(binding.root){
@@ -35,8 +29,9 @@ class AttentionFrgRvAdapter(private val list : List<AttentionFrgRecommendBean.Da
 
     override fun onBindViewHolder(holder: InnerRvHolder, position: Int) {
         val binding : ViewRvRecommendBinding? = DataBindingUtil.getBinding(holder.itemView)
-        binding?.data = list[position]
+        binding?.data = dataList[position]
+        binding?.executePendingBindings()
     }
 
-    override fun getItemCount() = list.size
+    override fun getItemCount() = dataList.size
 }

@@ -13,7 +13,7 @@ import com.example.shortvideo.ui.viewmodel.MainViewModel
  * @Description
  */
 open class BaseFragment(var title : String = "") : Fragment() {
-    protected val viewModel: MainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+    protected val viewModel: MainViewModel by lazy { ViewModelProvider(requireActivity()).get(MainViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

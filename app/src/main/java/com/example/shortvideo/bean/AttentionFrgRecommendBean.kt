@@ -1,16 +1,12 @@
 package com.example.shortvideo.bean
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.widget.Button
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.example.shortvideo.R
-import java.lang.Exception
-import javax.sql.DataSource
+
 
 /**
  * @ClassName AttentionFrgRecommendBean
